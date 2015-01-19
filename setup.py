@@ -1,4 +1,4 @@
-from setuptools import setup, Extension
+from setuptools import setup
 
 setup(
     name = 'ags_example_py_wrapper',
