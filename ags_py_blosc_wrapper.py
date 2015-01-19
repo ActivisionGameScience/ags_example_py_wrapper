@@ -6,9 +6,7 @@ import glob as _glob
 import os as _os
 
 
-
 __all__ = ['BloscWrapper']
-
 
 
 
