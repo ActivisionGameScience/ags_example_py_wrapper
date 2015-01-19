@@ -5,20 +5,18 @@ This repo is part of the tutorial found in
 https://github.com/ActivisionGameScience/ags_conda_recipes.git
 
 It contains a single python module, ``ags_py_blosc_wrapper``, that
-is a wrapper around the C++ library ``ags_blosc_wrapper``.  This, in
-turn, is a dumb wrapper around the popular ``c-blosc`` compression library.  See
-https://github.com/ActivisionGameScience/ags_example_cpp_lib.git for
-more details. 
+is a wrapper around the C++ library ``ags_blosc_wrapper`` (see
+https://github.com/ActivisionGameScience/ags_example_cpp_lib.git).
 
-The purpose of this module is to demonstrate several techniques:
+The purpose of this module is to demonstrate some techniques:
 
 - How to manage external dependencies using ``conda``
 
 - How to call a C binary from python using ``cffi``
 
 We purposefully exposed both a C and C++ API in ``ags_blosc_wrapper``
-to ease binding to other languages.  In our
-opinion it is *always* best to wrap C++ code in a C API.  We recommend
+to ease binding to other languages.  In our opinion this is *always*
+the method to use.  We recommend
 *against* trying to bind to C++ directly.
 
 Either ``cffi`` or ``cython`` can be used for the C binding (we
@@ -36,10 +34,9 @@ the ``conda`` way.
 However, you can also build and install this module by hand.
 Assuming that ``ags_blosc_wrapper`` is installed in the following location::
 
-    /some/path/include/activision_game_science/*.h
     /some/path/lib/libags_blosc_wrapper.so
 
-and PYTHONPATH points to the same directory tree::
+and PYTHONPATH points into a subdirectory::
 
     /some/path/lib/python2.7/site-packages
 
@@ -48,6 +45,11 @@ you can build and install with the following commands::
     git clone https://github.com/ActivisionGameScience/ags_example_py_wrapper.git
     cd ags_example_py_wrapper
     python setup.py install
+
+The only reason that the module needs to be installed underneath the
+same ``lib`` directory is that the
+binary loading logic is dumb (it climbs the directory tree until it
+finds the file).
 
 Here is an example of how to import and use the module::
 
